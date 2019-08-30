@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeesite.modules.mallshop.dao.MallShopDao">
+
+
+   <resultMap id="MallShop1" type="com.jeesite.modules.mallshop.entity.MallShop">
+                <result property = "treeCode" column = "tree_code"/>
+                <result property = "treeName" column = "tree_name"/>
+    </resultMap>
+	
+	<!-- 查询数据
+	<select id="findList" resultType="MallShop">
+		SELECT ${sqlMap.column.toSql()}
+		FROM ${sqlMap.table.toSql()}
+		<where>
+			${sqlMap.where.toSql()}
+		</where>
+		ORDER BY ${sqlMap.order.toSql()}
+	</select> -->
+	
+	<select id="getMallShopList"  resultType="MallShop">
+	SELECT
+    a.tree_code AS "treeCode",
+    a.parent_code AS "parentCode",
+    a.parent_codes AS "parentCodes",
+    a.tree_sort AS "treeSort",
+    a.tree_sorts AS "treeSorts",
+    a.tree_leaf AS "treeLeaf",
+    a.tree_level AS "treeLevel",
+    a.tree_names AS "treeNames",
+    a.tree_name AS "treeName",
+    a.lat_num AS "latNum",
+    a.lon_num AS "lonNum",
+    a.address AS "address",
+    a.pass_word AS "passWord",
+    a.phone AS "phone",
+    a.sale_man_id AS "saleManId",
+    a. STATUS AS "status",
+    a.create_by AS "createBy",
+    a.create_date AS "createDate",
+    a.update_by AS "updateBy",
+    a.update_date AS "updateDate",
+    a.remarks AS "remarks",
+    a.user_name AS "userName",
+    b.NAME As "saleManName"
+FROM
+    mall_shop a LEFT JOIN mall_sale b
+on a.sale_man_id=b.open_id
+WHERE ${sqlMap.where.toSql()}
+ORDER BY ${sqlMap.order.toSql()}
+	</select>
+	
+	<select id="getLastLevelShop" resultMap="MallShop1">
+    	SELECT tree_code,tree_name from mall_shop where tree_level in (1,2) and tree_leaf=1 ORDER BY tree_code
+	</select>
+	
+	
+</mapper>
