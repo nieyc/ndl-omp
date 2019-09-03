@@ -1,4 +1,4 @@
-<% layout('/layouts/default.html', {title: '商品信息管理', libs: ['validate','fileupload']}){ %>
+<% layout('/layouts/default.html', {title: '商品信息管理', libs: ['validate','fileupload','ueditor']}){ %>
 <div class="main-content">
 	<div class="box box-main">
 		<div class="box-header with-border">
@@ -48,7 +48,8 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required ">*</span> ${text('按种植分类')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:select path="goodPlantType" dictType="good_plant_type" class="form-control required" />
+								<!-- <#form:select path="goodPlantType" dictType="good_plant_type" class="form-control required" /> -->
+								<#form:select path="goodPlantType" items="${plants}"  itemLabel="name" itemValue="id" class="form-control required" /> 
 							</div>
 						</div>
 					</div>
@@ -173,7 +174,8 @@
                             <label class="control-label col-sm-2" title="">
                                 <span class="required hide">*</span> ${text('商品详情')}：<i class="fa icon-question hide"></i></label>
                             <div class="col-sm-10">
-                                <#form:textarea path="goodDesc" rows="4" maxlength="2000" class="form-control"/>
+                                  <#form:ueditor path="goodDesc" maxlength="10000" height="200" 
+                                    simpleToolbars="false" readonly="false" outline="false"/>
                             </div>
                         </div>
                     </div>

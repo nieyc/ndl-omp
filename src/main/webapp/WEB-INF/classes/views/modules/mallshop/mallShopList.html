@@ -63,19 +63,19 @@ $('#dataGrid').dataGrid({
 			//return '( '+row.treeCode+' ) '+'<a href="${ctx}/mallshop/mallShop/form?treeCode='+row.treeCode+'" class="btnList" data-title="${text("编辑门店信息")}">'+(val||row.id)+'</a>';
 		//}},
 		{header:'${text("门店名称")}', name:'treeName', index:'a.tree_name', width:150, align:"left"},
-		{header:'${text("本级排序号")}', name:'treeSort', index:'a.tree_sort', width:150, align:"center"},
+		//{header:'${text("本级排序号")}', name:'treeSort', index:'a.tree_sort', width:150, align:"center"},
 		//{header:'${text("经度")}', name:'latNum', index:'a.lat_num', width:150, align:"left"},
 		//{header:'${text("纬度")}', name:'lonNum', index:'a.lon_num', width:150, align:"left"},
 		//{header:'${text("登录密码")}', name:'passWord', index:'a.pass_word', width:150, align:"left"},
-		{header:'${text("门店经理")}', name:'userName', index:'a.user_name', width:150, align:"left"},
-		{header:'${text("联系电话")}', name:'phone', index:'a.phone', width:150, align:"left"},
+		{header:'${text("门店经理")}', name:'userName', index:'a.user_name', width:100, align:"left"},
+		{header:'${text("联系电话")}', name:'phone', index:'a.phone', width:100, align:"left"},
 		//{header:'${text("地址")}', name:'address', index:'a.address', width:150, align:"left"},
 		//{header:'${text("状态")}', name:'status', index:'a.status', width:150, align:"center", formatter: function(val, obj, row, act){
 			//return js.getDictLabel(${@DictUtils.getDictListJson('sys_search_status')}, val, '${text("未知")}', true);
 		//}},
 		//{header:'${text("更新时间")}', name:'updateDate', index:'a.update_date', width:150, align:"center"},
-		{header:'${text("业务员")}', name:'saleManName', index:'a.saleManName', width:150, align:"left"},
-		{header:'${text("备注信息")}', name:'remarks', index:'a.remarks', width:150, align:"left"},
+		{header:'${text("业务员")}', name:'saleManName', index:'a.saleManName', width:100, align:"left"},
+		{header:'${text("备注信息")}', name:'remarks', index:'a.remarks', width:350, align:"left"},
 		
 		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
 			var actions = [];

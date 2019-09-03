@@ -7,14 +7,17 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
+
 import com.jeesite.common.mybatis.annotation.JoinTable;
 import com.jeesite.common.mybatis.annotation.JoinTable.Type;
 import com.fasterxml.jackson.annotation.JsonFormat;
-
+import com.jeesite.common.collect.ListUtils;
 import com.jeesite.common.entity.DataEntity;
 import com.jeesite.common.mybatis.annotation.Column;
 import com.jeesite.common.mybatis.annotation.Table;
 import com.jeesite.common.mybatis.mapper.query.QueryType;
+import com.jeesite.modules.test.entity.TestDataChild;
 
 /**
  * 商品信息Entity
@@ -71,6 +74,7 @@ public class MallGood extends DataEntity<MallGood> {
 	private String goodExt2;		// 备用2
 	private String goodExt3;		// 备用3
 	private String goodExt4;		// 备用4
+	
 	
 	public MallGood() {
 		this(null);
@@ -263,7 +267,7 @@ public class MallGood extends DataEntity<MallGood> {
     public void setSaleFlag(String saleFlag) {
         this.saleFlag = saleFlag;
     }
-	
+
 	
 	
 }

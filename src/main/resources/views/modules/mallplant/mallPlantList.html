@@ -1,0 +1,60 @@
+<% layout('/layouts/default.html', {title: '植物分类管理', libs: ['dataGrid']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa fa-list-alt"></i> ${text('植物分类管理')}
+			</div>
+			<div class="box-tools pull-right">
+				<a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}"><i class="fa fa-filter"></i> ${text('查询')}</a>
+				<% if(hasPermi('mallplant:mallPlant:edit')){ %>
+					<a href="${ctx}/mallplant/mallPlant/form" class="btn btn-default btnTool" title="${text('新增植物分类')}"><i class="fa fa-plus"></i> ${text('新增')}</a>
+				<% } %>
+			</div>
+		</div>
+		<div class="box-body">
+			<#form:form id="searchForm" model="${mallPlant}" action="${ctx}/mallplant/mallPlant/listData" method="post" class="form-inline hide"
+					data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+				<div class="form-group">
+					<label class="control-label">${text('分类名称')}：</label>
+					<div class="control-inline">
+						<#form:input path="name" maxlength="45" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+					<button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+				</div>
+			</#form:form>
+			<table id="dataGrid"></table>
+			<div id="dataGridPage"></div>
+		</div>
+	</div>
+</div>
+<% } %>
+<script>
+// 初始化DataGrid对象
+$('#dataGrid').dataGrid({
+	searchForm: $("#searchForm"),
+	columnModel: [
+		{header:'${text("分类名称")}', name:'name', index:'a.name', width:50, align:"left", frozen:true, formatter: function(val, obj, row, act){
+			return '<a href="${ctx}/mallplant/mallPlant/form?id='+row.id+'" class="btnList" data-title="${text("编辑植物分类")}">'+(val||row.id)+'</a>';
+		}},
+		{header:'${text("url")}', name:'url', index:'a.url', width:200, align:"left"},
+		{header:'${text("图片地址")}', name:'iconUrl', index:'a.icon_url', width:250, align:"left"},
+		{header:'${text("排序")}', name:'sortOrder', index:'a.sort_order', width:50, align:"center"},
+		{header:'${text("操作")}', name:'actions', width:50, sortable:false, title:false, formatter: function(val, obj, row, act){
+			var actions = [];
+			<% if(hasPermi('mallplant:mallPlant:edit')){ %>
+				actions.push('<a href="${ctx}/mallplant/mallPlant/form?id='+row.id+'" class="btnList" title="${text("编辑植物分类")}"><i class="fa fa-pencil"></i></a>&nbsp;');
+				actions.push('<a href="${ctx}/mallplant/mallPlant/delete?id='+row.id+'" class="btnList" title="${text("删除植物分类")}" data-confirm="${text("确认要删除该植物分类吗？")}"><i class="fa fa-trash-o"></i></a>&nbsp;');
+			<% } %>
+			return actions.join('');
+		}}
+	],
+	// 加载成功后执行事件
+	ajaxSuccess: function(data){
+		
+	}
+});
+</script>

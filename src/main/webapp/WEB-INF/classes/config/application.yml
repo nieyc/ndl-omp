@@ -27,7 +27,7 @@ staticUrl: http://172.16.1.103:8081/
 #======================================#
 
 server: 
-  port: 8980
+  port: 8089
   servlet:
     context-path: /ndl-omp
   tomcat:
@@ -43,15 +43,15 @@ jdbc:
   type: mysql
   driver: com.mysql.jdbc.Driver
   
+  #阿里
+  #url: jdbc:mysql://172.19.188.138:3306/ndl-mall?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+  #username: root
+  #password: 123456
+  
   #开发
   url: jdbc:mysql://172.16.2.142:3306/ndl-mall?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
   username: root
   password: f118f79491dc6b493b0144ff61c921b5
-  
-  #生产
-  #url: jdbc:mysql://172.10.5.18:3306/adadmin?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
-  #username: shanghai
-  #password: some_pass
   
   
   testSql: SELECT 1
@@ -513,8 +513,10 @@ web:
 file:
   enabled: true
   # 文件上传根路径，设置路径中不允许包含“userfiles”，在指定目录中系统会自动创建userfiles目录，如果不设置默认为contextPath路径
-  #baseDir: /usr/local/nginx/html/ndl/
-  baseDir: /opt/static
+  #开发
+  baseDir: /opt/static/ndl
+  #生产
+  #baseDir: /usr/local/nginx/html/ndl
   # 上传文件的相对路径（支持：yyyy, MM, dd, HH, mm, ss, E）
   uploadPath: '{yyyy}{MM}{dd}/'
   

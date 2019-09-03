@@ -8,7 +8,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.jeesite.common.entity.Page;
 import com.jeesite.common.service.CrudService;
 import com.jeesite.modules.mallgood.entity.MallGood;
@@ -28,6 +27,7 @@ public class MallGoodService extends CrudService<MallGoodDao, MallGood> {
     
     @Autowired
     private MallGoodShopRelationService mallGoodShopRelationService;
+    
 	
 	/**
 	 * 获取单条数据
@@ -36,7 +36,8 @@ public class MallGoodService extends CrudService<MallGoodDao, MallGood> {
 	 */
 	@Override
 	public MallGood get(MallGood mallGood) {
-		return super.get(mallGood);
+	    MallGood entity=super.get(mallGood);
+		return entity;
 	}
 	
 	/**
@@ -76,6 +77,7 @@ public class MallGoodService extends CrudService<MallGoodDao, MallGood> {
 	   }
 		// 保存上传图片
 		FileUploadUtils.saveFileUpload(mallGood.getId(), "mallGood_image");
+		
 	}
 	
 	/**
@@ -97,6 +99,7 @@ public class MallGoodService extends CrudService<MallGoodDao, MallGood> {
 	public void delete(MallGood mallGood) {
 	    mallGoodShopRelationService.deleteByGoodId(mallGood.getId());
 		super.delete(mallGood);
+		
 	}
 	
 }

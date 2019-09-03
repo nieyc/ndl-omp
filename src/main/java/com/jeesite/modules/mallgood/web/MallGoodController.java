@@ -26,6 +26,8 @@ import com.jeesite.modules.mallgood.entity.MallGood;
 import com.jeesite.modules.mallgood.service.MallGoodService;
 import com.jeesite.modules.mallgoodrelation.entity.MallGoodShopRelation;
 import com.jeesite.modules.mallgoodrelation.service.MallGoodShopRelationService;
+import com.jeesite.modules.mallplant.entity.MallPlant;
+import com.jeesite.modules.mallplant.service.MallPlantService;
 import com.jeesite.modules.mallsale.entity.MallSale;
 import com.jeesite.modules.mallsale.service.MallSaleService;
 import com.jeesite.modules.mallshop.entity.MallShop;
@@ -48,6 +50,9 @@ public class MallGoodController extends BaseController {
     
     @Autowired
     private MallGoodShopRelationService mallGoodShopRelationService;
+    
+    @Autowired
+    private MallPlantService mallPlantService;
 	
 	/**
 	 * 获取数据
@@ -111,6 +116,9 @@ public class MallGoodController extends BaseController {
          List<MallShop> shopList=mallShopService.getLastLevelShop();
          shopList.add(0, mallShop);
          model.addAttribute("shops", shopList);
+         List<MallPlant> plantList=mallPlantService.findList(new MallPlant());
+         model.addAttribute("plants", plantList);
+         
 		 return "modules/mallgood/mallGoodForm";
 	}
 

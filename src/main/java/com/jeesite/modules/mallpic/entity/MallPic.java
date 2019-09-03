@@ -19,6 +19,7 @@ import com.jeesite.common.mybatis.mapper.query.QueryType;
 		@Column(name="id", attrName="id", label="id", isPK=true),
 		@Column(name="name", attrName="name", label="名称", queryType=QueryType.LIKE),
 		@Column(name="pic_url", attrName="picUrl", label="图片"),
+		@Column(name="bz", attrName="bz", label="详情"),
 	}, orderBy="a.id DESC"
 )
 public class MallPic extends DataEntity<MallPic> {
@@ -26,6 +27,7 @@ public class MallPic extends DataEntity<MallPic> {
 	private static final long serialVersionUID = 1L;
 	private String name;		// 名称
 	private String picUrl;		// 图片
+	private String bz;
 	
 	public MallPic() {
 		this(null);
@@ -52,5 +54,17 @@ public class MallPic extends DataEntity<MallPic> {
 	public void setPicUrl(String picUrl) {
 		this.picUrl = picUrl;
 	}
+
+    public String getBz() {
+        return bz;
+    }
+
+    public void setBz(String bz) {
+        this.bz = bz;
+    }
+
+
+	
+	
 	
 }
