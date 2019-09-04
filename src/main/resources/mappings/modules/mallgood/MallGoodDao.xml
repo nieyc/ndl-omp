@@ -12,4 +12,15 @@
 		ORDER BY ${sqlMap.order.toSql()}
 	</select> -->
 	
+	<select id="findList" resultType="MallGood">
+	 SELECT a.*,b.name as good_type_name,c.name as plant_type_name from
+     mall_good a LEFT JOIN mall_channel b on a.good_type=b.id
+     LEFT JOIN mall_plant c
+     on a.good_plant_type = c.id
+     <where>
+            ${sqlMap.where.toSql()}
+        </where>
+        ORDER BY ${sqlMap.order.toSql()}
+	</select>
+	
 </mapper>

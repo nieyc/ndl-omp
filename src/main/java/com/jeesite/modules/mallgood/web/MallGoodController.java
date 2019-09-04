@@ -22,6 +22,8 @@ import com.jeesite.common.config.Global;
 import com.jeesite.common.entity.Page;
 import com.jeesite.common.lang.StringUtils;
 import com.jeesite.common.web.BaseController;
+import com.jeesite.modules.mallchannel.entity.MallChannel;
+import com.jeesite.modules.mallchannel.service.MallChannelService;
 import com.jeesite.modules.mallgood.entity.MallGood;
 import com.jeesite.modules.mallgood.service.MallGoodService;
 import com.jeesite.modules.mallgoodrelation.entity.MallGoodShopRelation;
@@ -53,6 +55,9 @@ public class MallGoodController extends BaseController {
     
     @Autowired
     private MallPlantService mallPlantService;
+    
+    @Autowired
+    private MallChannelService mallChannelService;
 	
 	/**
 	 * 获取数据
@@ -68,7 +73,21 @@ public class MallGoodController extends BaseController {
 	@RequiresPermissions("mallgood:mallGood:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(MallGood mallGood, Model model) {
-		  model.addAttribute("mallGood", mallGood);
+		 model.addAttribute("mallGood", mallGood);
+		  
+	     MallPlant mallPlant=new MallPlant();
+	     mallPlant.setId("");
+	     mallPlant.setName("全部");
+	     List<MallPlant> plantList=mallPlantService.findList(new MallPlant());
+	     plantList.add(0, mallPlant);
+         model.addAttribute("plants", plantList);
+         MallChannel mallChannel=new MallChannel();
+         mallChannel.setId("");
+         mallChannel.setName("全部");
+         List<MallChannel> channelList=mallChannelService.findList(new MallChannel());
+         channelList.add(0, mallChannel);
+         model.addAttribute("channel",channelList);
+		  
 		return "modules/mallgood/mallGoodList";
 	}
 	
@@ -118,7 +137,8 @@ public class MallGoodController extends BaseController {
          model.addAttribute("shops", shopList);
          List<MallPlant> plantList=mallPlantService.findList(new MallPlant());
          model.addAttribute("plants", plantList);
-         
+         List<MallChannel> channelList=mallChannelService.findList(new MallChannel());
+         model.addAttribute("channel",channelList);
 		 return "modules/mallgood/mallGoodForm";
 	}
 

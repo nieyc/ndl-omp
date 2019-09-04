@@ -74,6 +74,8 @@ public class MallGood extends DataEntity<MallGood> {
 	private String goodExt2;		// 备用2
 	private String goodExt3;		// 备用3
 	private String goodExt4;		// 备用4
+	private String goodTypeName;
+	private String plantTypeName;
 	
 	
 	public MallGood() {
@@ -268,6 +270,23 @@ public class MallGood extends DataEntity<MallGood> {
         this.saleFlag = saleFlag;
     }
 
+    public String getGoodTypeName() {
+        return goodTypeName;
+    }
+
+    public void setGoodTypeName(String goodTypeName) {
+        this.goodTypeName = goodTypeName;
+    }
+
+    public String getPlantTypeName() {
+        return plantTypeName;
+    }
+
+    public void setPlantTypeName(String plantTypeName) {
+        this.plantTypeName = plantTypeName;
+    }
+    
+    
 	
 	
 }

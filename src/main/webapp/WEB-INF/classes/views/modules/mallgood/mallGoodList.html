@@ -30,13 +30,14 @@
 				<div class="form-group">
 					<label class="control-label">${text('产品类型')}：</label>
 					<div class="control-inline width-120">
-						<#form:select path="goodType" dictType="good_type" blankOption="true" class="form-control"/>
+					   <#form:select path="goodType" items="${channel}"  itemLabel="name" itemValue="id" class="form-control" /> 
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label">${text('按种植分类')}：</label>
 					<div class="control-inline width-120">
-						<#form:select path="goodPlantType" dictType="good_plant_type" blankOption="true" class="form-control"/>
+					   <#form:select path="goodPlantType" items="${plants}"  itemLabel="name" itemValue="id" class="form-control" /> 
+					
 					</div>
 				</div>
 				<div class="form-group">
@@ -70,22 +71,18 @@ $('#dataGrid').dataGrid({
 		{header:'${text("商品简称")}', name:'goodName', index:'a.good_name', width:150, align:"left", frozen:true, formatter: function(val, obj, row, act){
 			return '<a href="${ctx}/mallgood/mallGood/form?id='+row.id+'" class="btnList" data-title="${text("编辑商品信息")}">'+(val||row.id)+'</a>';
 		}},
-		{header:'${text("产品类型")}', name:'goodType', index:'a.good_type', width:150, align:"center", formatter: function(val, obj, row, act){
-			return js.getDictLabel(${@DictUtils.getDictListJson('good_type')}, val, '${text("未知")}', true);
-		}},
-		{header:'${text("按种植分类")}', name:'goodPlantType', index:'a.good_plant_type', width:150, align:"center", formatter: function(val, obj, row, act){
-			return js.getDictLabel(${@DictUtils.getDictListJson('good_plant_type')}, val, '${text("未知")}', true);
-		}},
-		{header:'${text("商品价格")}', name:'goodPrice', index:'a.good_price', width:150, align:"right", formatter: function(val, obj, row, act){
+		{header:'${text("商品全称")}', name:'goodFullName', index:'a.good_full_name', width:200, align:"left"},
+		{header:'${text("产品类型")}', name:'goodTypeName', index:'a.good_type_name', width:150, align:"left"},
+		{header:'${text("按种植分类")}', name:'plantTypeName', index:'a.plant_type_name', width:100, align:"left"},
+		{header:'${text("商品价格")}', name:'goodPrice', index:'a.good_price', width:100, align:"left", formatter: function(val, obj, row, act){
 			return js.formatNumber(val, 2, false, ''); // 数值类型格式化 (原始数值, 小数位数, 是否千分位, 默认值，金额情况下设置0.00);
 		}},
-		{header:'${text("是否新品")}', name:'isNew', index:'a.is_new', width:150, align:"center", formatter: function(val, obj, row, act){
+		{header:'${text("是否新品")}', name:'isNew', index:'a.is_new', width:100, align:"left", formatter: function(val, obj, row, act){
 			return js.getDictLabel(${@DictUtils.getDictListJson('sys_yes_no')}, val, '${text("未知")}', true);
 		}},
-		{header:'${text("是否热销")}', name:'isHot', index:'a.is_hot', width:150, align:"center", formatter: function(val, obj, row, act){
+		{header:'${text("是否热销")}', name:'isHot', index:'a.is_hot', width:100, align:"left", formatter: function(val, obj, row, act){
 			return js.getDictLabel(${@DictUtils.getDictListJson('sys_yes_no')}, val, '${text("未知")}', true);
 		}},
-		{header:'${text("商品品牌")}', name:'goodBrand', index:'a.good_brand', width:150, align:"left"},
 		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
 			var actions = [];
 			<% if(hasPermi('mallgood:mallGood:edit')){ %>
